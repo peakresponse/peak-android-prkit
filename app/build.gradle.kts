@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "net.peakresponse.android.example"
+    namespace = "net.peakresponse.android.shared.example"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "net.peakresponse.android.example"
+        applicationId = "net.peakresponse.android.shared.example"
         minSdk = 23
         targetSdk = 36
         versionCode = 1
@@ -19,21 +19,12 @@ android {
     }
 
     buildTypes {
-        debug {
-
-        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-        }
-    }
-    flavorDimensions += "application"
-    productFlavors {
-        create("civ") {
-
         }
     }
     compileOptions {

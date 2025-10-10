@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "prkit"
 include(":app")
-include(":prkit")
+include(":shared")

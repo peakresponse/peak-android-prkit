@@ -1,4 +1,4 @@
-package net.peakresponse.android.example
+package net.peakresponse.android.shared.example
 
 import org.junit.Test
 

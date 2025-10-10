@@ -1,4 +1,4 @@
-package net.peakresponse.android.example.ui.theme
+package net.peakresponse.android.shared.example.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
