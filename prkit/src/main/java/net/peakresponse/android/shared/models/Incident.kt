@@ -1,7 +1,9 @@
 package net.peakresponse.android.shared.models
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 import java.util.Date
 
 @Entity
@@ -18,4 +20,13 @@ data class Incident(
     val calledAt: Date?,
     val dispatchNotifiedAt: Date?,
     val reportsCount: Int?
+)
+
+data class IncidentWithScene(
+    @Embedded val incident: Incident,
+    @Relation(
+        parentColumn = "sceneId",
+        entityColumn = "id"
+    )
+    val scene: Scene?
 )
