@@ -29,5 +29,5 @@ data class IncidentWithScene(
         parentColumn = "sceneId",
         entityColumn = "id"
     )
-    val scene: SceneWithAddress?
+    val sceneWithAddress: SceneWithAddress?
 )
