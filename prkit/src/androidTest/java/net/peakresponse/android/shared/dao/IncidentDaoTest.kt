@@ -20,6 +20,7 @@ class IncidentDaoTest {
     companion object {
         private const val TAG = "net.peakresponse.android.shared.dao.IncidentDaoTest"
     }
+
     private lateinit var db: PRAppDatabase
     private lateinit var dao: IncidentDao
 
@@ -43,7 +44,7 @@ class IncidentDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun queryIncidents() {
+    fun getIncidents() {
         val incidentsFlow = dao.getIncidents()
         runBlocking {
             val incidents = incidentsFlow.first()
@@ -53,7 +54,7 @@ class IncidentDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun queryIncidentsWithScenes() {
+    fun getIncidentsWithScenes() {
         val incidentsFlow = dao.getIncidentsWithScenes()
         runBlocking {
             val incidents = incidentsFlow.first()
@@ -63,11 +64,12 @@ class IncidentDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun queryActiveMciIncidentsWithScenes() {
+    fun getActiveMciIncidentsWithScenes() {
         val incidentsFlow = dao.getActiveMciIncidentsWithScenes()
         runBlocking {
             val incidents = incidentsFlow.first()
             Assert.assertEquals(1, incidents.size)
+            Assert.assertEquals("99 Grove St\nSan Francisco, CA 94102", incidents[0].scene?.address)
         }
     }
 }

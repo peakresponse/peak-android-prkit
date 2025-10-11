@@ -1,7 +1,9 @@
 package net.peakresponse.android.shared.models
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 import java.util.Date
 
 @Entity
@@ -38,3 +40,26 @@ data class Scene(
     val stagingResponderId: String?,
     val transportResponderId: String?
 )
+
+data class SceneWithAddress(
+    @Embedded
+    val scene: Scene,
+    @Relation(
+        parentColumn = "cityId",
+        entityColumn = "id"
+    )
+    val city: City?,
+    @Relation(
+        parentColumn = "stateId",
+        entityColumn = "id"
+    )
+    val state: State?
+) {
+    val address: String
+        get() {
+            return "${scene.address1 ?: ""}\n${scene.address2 ?: ""}\n${city?.name ?: ""}, ${state?.abbr ?: ""} ${scene.zip ?: ""}".replace(
+                Regex("\n{2,}"),
+                "\n"
+            ).trim()
+        }
+}
