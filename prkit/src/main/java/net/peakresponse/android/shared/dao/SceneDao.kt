@@ -9,4 +9,7 @@ import net.peakresponse.android.shared.models.Scene
 abstract class SceneDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertMany(records: List<Scene>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract suspend fun insert(record: Scene)
 }

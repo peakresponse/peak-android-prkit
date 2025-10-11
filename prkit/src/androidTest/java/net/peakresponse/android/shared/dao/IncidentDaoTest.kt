@@ -1,15 +1,12 @@
 package net.peakresponse.android.shared.dao
 
-import android.content.Context
 import android.util.Log
 import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-import net.peakresponse.android.shared.dao.IncidentDao
-import net.peakresponse.android.shared.dao.PRAppDatabase
+import net.peakresponse.android.shared.dao.fixtures.Fixtures
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -47,10 +44,30 @@ class IncidentDaoTest {
     @Test
     @Throws(Exception::class)
     fun queryIncidents() {
-        val incidentsFlow = dao.queryIncidents()
+        val incidentsFlow = dao.getIncidents()
         runBlocking {
             val incidents = incidentsFlow.first()
-            Assert.assertEquals(incidents.size, 3)
+            Assert.assertEquals(2, incidents.size)
+        }
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun queryIncidentsWithScenes() {
+        val incidentsFlow = dao.getIncidentsWithScenes()
+        runBlocking {
+            val incidents = incidentsFlow.first()
+            Assert.assertEquals(3, incidents.size)
+        }
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun queryActiveMciIncidentsWithScenes() {
+        val incidentsFlow = dao.getActiveMciIncidentsWithScenes()
+        runBlocking {
+            val incidents = incidentsFlow.first()
+            Assert.assertEquals(1, incidents.size)
         }
     }
 }

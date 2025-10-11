@@ -1,10 +1,10 @@
-package net.peakresponse.android.shared.dao
+package net.peakresponse.android.shared.dao.fixtures
 
 import net.peakresponse.android.shared.dao.PRAppDatabase
 import net.peakresponse.android.shared.models.Incident
 
-object Fixtures {
-    suspend fun populate(db: PRAppDatabase) {
+object IncidentFixtures {
+    suspend fun populateIncidents(db: PRAppDatabase) {
         val incidentDao = db.getIncidentDao()
         incidentDao.insert(
             Incident(
@@ -14,7 +14,7 @@ object Fixtures {
                 createdById = null,
                 eventId = null,
                 psapId = null,
-                sceneId = null,
+                sceneId = "6678c6b5-a3e2-470b-8a89-e6de4ecf9cd9",
                 number = "0001",
                 sort = 1,
                 calledAt = null,
@@ -30,7 +30,7 @@ object Fixtures {
                 createdById = null,
                 eventId = null,
                 psapId = null,
-                sceneId = null,
+                sceneId = "84e14e1a-921e-4cde-b1ab-e2d7889b2cb9",
                 number = "0002",
                 sort = 2,
                 calledAt = null,
@@ -46,7 +46,7 @@ object Fixtures {
                 createdById = null,
                 eventId = null,
                 psapId = null,
-                sceneId = null,
+                sceneId = "5136e182-a2dc-42da-b9dd-3f3681b1bfc2",
                 number = "0003",
                 sort = 3,
                 calledAt = null,

@@ -11,6 +11,12 @@
       <SelectionState runConfigName="Tests in 'net.peakresponse.android.shared'">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="queryIncidentsWithScenes()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="queryActiveMciIncidentsWithScenes()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
