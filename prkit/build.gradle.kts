@@ -24,17 +24,6 @@ android {
             )
         }
     }
-
-    flavorDimensions += "application"
-    productFlavors {
-        create("civ") {
-            dimension = "application"
-        }
-        create("mil") {
-            dimension = "application"
-        }
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
