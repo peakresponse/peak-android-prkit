@@ -9,4 +9,7 @@ import net.peakresponse.android.shared.models.State
 abstract class StateDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertMany(records: List<State>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract suspend fun insert(record: State)
 }

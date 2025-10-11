@@ -17,6 +17,9 @@
       <SelectionState runConfigName="queryActiveMciIncidentsWithScenes()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="getActiveMciIncidentsWithScenes()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

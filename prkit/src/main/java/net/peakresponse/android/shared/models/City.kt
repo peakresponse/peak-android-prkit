@@ -14,4 +14,12 @@ data class City(
     val stateAlpha: String?,
     val primaryLatitude: Double?,
     val primaryLongitude: Double?
-)
+) {
+    val name: String?
+        get() {
+            if (featureName?.startsWith("City of ") ?: false) {
+                return featureName.substring(8)
+            }
+            return featureName
+        }
+}

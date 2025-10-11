@@ -6,6 +6,8 @@ import net.peakresponse.android.shared.models.Scene
 
 object Fixtures {
     suspend fun populate(db: PRAppDatabase) {
+        CityFixtures.populateCities(db)
+        StateFixtures.populateStates(db)
         IncidentFixtures.populateIncidents(db)
         SceneFixtures.populateScenes(db)
     }

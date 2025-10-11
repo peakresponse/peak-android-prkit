@@ -25,8 +25,9 @@ data class Incident(
 data class IncidentWithScene(
     @Embedded val incident: Incident,
     @Relation(
+        entity = Scene::class,
         parentColumn = "sceneId",
         entityColumn = "id"
     )
-    val scene: Scene?
+    val scene: SceneWithAddress?
 )
