@@ -48,7 +48,7 @@ class IncidentDaoTest {
         val incidentsFlow = dao.getIncidents()
         runBlocking {
             val incidents = incidentsFlow.first()
-            Assert.assertEquals(2, incidents.size)
+            Assert.assertEquals(3, incidents.size)
         }
     }
 
@@ -69,7 +69,7 @@ class IncidentDaoTest {
         runBlocking {
             val incidents = incidentsFlow.first()
             Assert.assertEquals(1, incidents.size)
-            Assert.assertEquals("99 Grove St\nSan Francisco, CA 94102", incidents[0].scene?.address)
+            Assert.assertEquals("99 Grove St\nSan Francisco, CA 94102", incidents[0].sceneWithAddress?.address)
         }
     }
 }
