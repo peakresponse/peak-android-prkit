@@ -11,6 +11,7 @@ import kotlinx.coroutines.runBlocking
 import net.peakresponse.android.shared.dao.IncidentDao
 import net.peakresponse.android.shared.dao.PRAppDatabase
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -49,7 +50,7 @@ class IncidentDaoTest {
         val incidentsFlow = dao.queryIncidents()
         runBlocking {
             val incidents = incidentsFlow.first()
-            Log.d(TAG, "incidents=${incidents}")
+            Assert.assertEquals(incidents.size, 3)
         }
     }
 }
