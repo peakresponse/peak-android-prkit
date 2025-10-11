@@ -69,7 +69,10 @@ class IncidentDaoTest {
         runBlocking {
             val incidents = incidentsFlow.first()
             Assert.assertEquals(1, incidents.size)
-            Assert.assertEquals("99 Grove St\nSan Francisco, CA 94102", incidents[0].sceneWithAddress?.address)
+            Assert.assertEquals(
+                "99 Grove St\nSan Francisco, CA 94102",
+                incidents[0].sceneWithAddress?.address
+            )
         }
     }
 }
