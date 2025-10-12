@@ -75,4 +75,16 @@ class PRSettings(
                 putString("routedUrl", newValue)
             }
         }
+
+    fun logout() {
+        userId = null
+        regionId = null
+        agencyId = null
+        assignmentId = null
+        vehicleId = null
+        eventId = null
+        sceneId = null
+        subdomain = null
+        routedUrl = null
+    }
 }
