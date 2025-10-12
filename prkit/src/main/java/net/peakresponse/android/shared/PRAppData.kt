@@ -3,6 +3,9 @@ package net.peakresponse.android.shared
 import android.content.Context
 import android.util.Log
 import androidx.room.Room
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import net.peakresponse.android.shared.api.PRPayload
 import net.peakresponse.android.shared.api.PRApiClient
@@ -77,6 +80,16 @@ object PRAppData {
         body["email"] = email
         body["password"] = password
         return PRApiClient.getInstance(context).login(body)
+    }
+
+    fun logout(context: Context) {
+        PRApiClient.logout()
+        val settings = PRSettings(context)
+        settings.logout()
+        val db = getDb(context)
+        CoroutineScope(Dispatchers.IO).launch {
+            db.clearAllTables()
+        }
     }
 
     fun connectIncidents(context: Context, assignmentId: String) {

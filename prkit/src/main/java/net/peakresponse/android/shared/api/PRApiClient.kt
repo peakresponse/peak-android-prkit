@@ -99,21 +99,25 @@ abstract class PRWebSocketListener : WebSocketListener() {
 
 object PRApiClient {
     private const val TAG = "net.peakresponse.android.shared.api.PRApiClient"
+    private lateinit var cookieManager: CookieManager
     private var client: OkHttpClient? = null
     private var instance: PRApiClientInterface? = null
     private var moshi: Moshi? = null
 
     public var API_URL: String? = null
 
+    fun logout() {
+        cookieManager.cookieStore.removeAll()
+    }
+
     fun getClient(context: Context): OkHttpClient {
         if (client == null) {
             val settings = PRSettings(context)
-            val cookieJar = JavaNetCookieJar(
-                CookieManager(
-                    SharedPreferencesCookieStore(context, TAG),
-                    CookiePolicy.ACCEPT_ALL
-                )
+            cookieManager = CookieManager(
+                SharedPreferencesCookieStore(context, TAG),
+                CookiePolicy.ACCEPT_ALL
             )
+            val cookieJar = JavaNetCookieJar(cookieManager)
             client = OkHttpClient.Builder()
                 .cookieJar(cookieJar)
                 .addNetworkInterceptor({ chain ->
