@@ -22,6 +22,8 @@ data class Scene(
     val approxPriorityPatientsCounts: List<Int>?,
     val patientsCount: Int?,
     val priorityPatientsCounts: List<Int>?,
+    val transpPatientsCount: Int?,
+    val transpPriorityPatientsCounts: List<Int>?,
     val isActive: Boolean?,
     val isMCI: Boolean?,
     val lat: String?,
