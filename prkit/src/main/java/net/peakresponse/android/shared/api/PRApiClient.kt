@@ -221,4 +221,55 @@ object PRApiClient {
             }
         })
     }
+
+    fun connectScene(
+        context: Context,
+        sceneId: String,
+        listener: PRWebSocketListener
+    ): WebSocket {
+        val payloadAdapter = getMoshi().adapter<PRPayload>(PRPayload::class.java)
+        val settings = PRSettings(context)
+        val request = Request.Builder()
+            .header("X-Agency-Subdomain", settings.subdomain ?: "")
+            .url(
+                "${API_URL!!}/scene?id=${sceneId}".replace(
+                    "https://",
+                    "wss://"
+                )
+            )
+            .build()
+        val client = getClient(context)
+        return client.newWebSocket(request, object : WebSocketListener() {
+            override fun onOpen(webSocket: WebSocket, response: okhttp3.Response) {
+                listener.onOpen(webSocket, response)
+            }
+
+            override fun onMessage(webSocket: WebSocket, text: String) {
+                listener.onMessage(webSocket, text)
+                payloadAdapter.fromJson(text)?.let { payload ->
+                    listener.onMessage(webSocket, payload)
+                }
+            }
+
+            override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
+                listener.onMessage(webSocket, bytes)
+            }
+
+            override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
+                listener.onClosing(webSocket, code, reason)
+            }
+
+            override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
+                listener.onClosed(webSocket, code, reason)
+            }
+
+            override fun onFailure(
+                webSocket: WebSocket,
+                t: Throwable,
+                response: okhttp3.Response?
+            ) {
+                listener.onFailure(webSocket, t, response)
+            }
+        })
+    }
 }

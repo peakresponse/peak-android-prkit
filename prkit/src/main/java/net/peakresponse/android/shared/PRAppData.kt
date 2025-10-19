@@ -23,6 +23,7 @@ object PRAppData {
     private var db: PRAppDatabase? = null
 
     private var incidentsSocket: WebSocket? = null
+    private var sceneSocket: WebSocket? = null
 
     fun getDb(context: Context): PRAppDatabase {
         if (db == null) {
@@ -123,5 +124,38 @@ object PRAppData {
     fun disconnectIncidents() {
         incidentsSocket?.cancel()
         incidentsSocket = null
+    }
+
+    fun connectScene(context: Context, sceneId: String) {
+        sceneSocket?.cancel()
+        sceneSocket =
+            PRApiClient.connectScene(context, sceneId, object : PRWebSocketListener() {
+                override fun onOpen(webSocket: WebSocket, response: okhttp3.Response) {
+                    Log.d(TAG, "onOpen")
+                }
+
+                override fun onMessage(webSocket: WebSocket, payload: PRPayload?) {
+                    runBlocking {
+                        handlePayload(context, payload)
+                    }
+                }
+
+                override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
+                    Log.d(TAG, "onClosed")
+                }
+
+                override fun onFailure(
+                    webSocket: WebSocket,
+                    t: Throwable,
+                    response: okhttp3.Response?
+                ) {
+                    Log.d(TAG, "onFailure t=$t")
+                }
+            })
+    }
+
+    fun disconnectScene() {
+        sceneSocket?.cancel()
+        sceneSocket = null
     }
 }
