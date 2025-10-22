@@ -1,7 +1,9 @@
 package net.peakresponse.android.shared.models
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 import java.util.Date
 
 @Entity
@@ -15,7 +17,8 @@ data class Report(
     val updatedAt: Date?,
     val data: Map<String, Any>?,
     val incidentId: String?,
-    val filterPriority: String?,
+    val priority: Int?,
+    val filterPriority: Int?,
     val pin: String?,
     val sceneId: String?,
     val responseId: String?,
@@ -34,3 +37,14 @@ data class Report(
     val ringdownId: String?,
     val deletedAt: Date?
 )
+
+data class ReportWithPatient(
+    @Embedded val report: Report,
+    @Relation(
+        entity = Patient::class,
+        parentColumn = "patientId",
+        entityColumn = "id"
+    )
+    val patient: Patient?
+)
+

@@ -10,5 +10,7 @@ object Fixtures {
         StateFixtures.populateStates(db)
         IncidentFixtures.populateIncidents(db)
         SceneFixtures.populateScenes(db)
+        PatientFixtures.populatePatients(db)
+        ReportFixtures.populateReports(db)
     }
 }

@@ -9,4 +9,7 @@ import net.peakresponse.android.shared.models.Patient
 abstract class PatientDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertMany(records: List<Patient>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract suspend fun insert(record: Patient)
 }
