@@ -224,7 +224,7 @@ object PRApiClient {
 
     fun connectScene(
         context: Context,
-        sceneId: String,
+        incidentId: String,
         listener: PRWebSocketListener
     ): WebSocket {
         val payloadAdapter = getMoshi().adapter<PRPayload>(PRPayload::class.java)
@@ -232,7 +232,7 @@ object PRApiClient {
         val request = Request.Builder()
             .header("X-Agency-Subdomain", settings.subdomain ?: "")
             .url(
-                "${API_URL!!}/scene?id=${sceneId}".replace(
+                "${API_URL!!}/scene?incidentId=${incidentId}".replace(
                     "https://",
                     "wss://"
                 )

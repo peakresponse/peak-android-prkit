@@ -25,7 +25,7 @@ abstract class IncidentDao {
     abstract fun getIncidentsWithScenes(): Flow<List<IncidentWithScene>>
 
     @Transaction
-    @Query("SELECT * FROM Incident JOIN Scene ON Incident.sceneId=Scene.id WHERE Scene.isMCI=1 AND Scene.isActive=1")
+    @Query("SELECT Incident.* FROM Incident JOIN Scene ON Incident.sceneId=Scene.id WHERE Scene.isMCI=1 AND Scene.isActive=1")
     abstract fun getActiveMciIncidentsWithScenes(): Flow<List<IncidentWithScene>>
 
     @Query("SELECT * FROM Incident WHERE id = :id")

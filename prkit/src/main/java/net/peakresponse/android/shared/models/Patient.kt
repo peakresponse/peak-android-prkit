@@ -17,7 +17,7 @@ data class Patient(
     val firstName: String?,
     val lastName: String?,
     val gender: String?,
-    val age: String?,
+    val age: Int?,
     val ageUnits: String?,
     val dob: String?,
     val location: String?,
